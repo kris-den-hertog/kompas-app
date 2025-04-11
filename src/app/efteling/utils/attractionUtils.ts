@@ -49,7 +49,6 @@ export async function fetchEftelingData(): Promise<Attraction[]> {
 
 export function categorizeAttractions(data: Attraction[]): Attraction[] {
     return data.map(item => {
-        // Use the entityType property directly from the API
         const type = item.entityType === 'SHOW' ? 'SHOW' : 'ATTRACTION';
         
         return {

@@ -1,7 +1,3 @@
-
-
-
-// Park Components
 export const Park = {
     Header: function ParkHeader() {
         return (

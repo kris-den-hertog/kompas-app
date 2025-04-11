@@ -10,10 +10,14 @@
   --color-main-500: #4F6D53;
 
   --color-copper: #573700;
+  --color-mattOrange: #DCA85A;
+  --color-offWhite: #FAFAFA;
+
 }
 
 body {
   font-family: "Montaga", serif;
   font-weight: 400;
   font-style: normal;
+  overflow-x: hidden;
 }
