@@ -5,6 +5,7 @@ import { Park } from './components/Park';
 import { Navigation } from './components/navigation';
 import { ExperienceList } from './components/experiences';
 import { Attraction, fetchEftelingData, categorizeAttractions } from './utils/attractionUtils';
+import Link from 'next/link';
 
 export default function Home() {
     const [attractions, setAttractions] = useState<Attraction[]>([]);
@@ -62,7 +63,7 @@ export default function Home() {
             {error && <Park.ErrorState error={error} />}
 
             {!loading && !error && filteredAttractions.length === 0 && (
-                <p className="text-center text-lg">No experiences found matching your search.</p>
+                <p className="text-center text-lg">Geen resultaten gevonden.</p>
             )}
 
             {!loading && !error && (
@@ -76,6 +77,7 @@ export default function Home() {
                     )}
                 </>
             )}
+            <Link href={"./efteling"}><div className='sticky bottom-3 left-3 rounded-full w-[40px] h-[40px] bg-copper' /></Link>
         </main>
     );
 }

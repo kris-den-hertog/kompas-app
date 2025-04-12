@@ -10,7 +10,7 @@ export const ExperienceCard = {
                 attraction.queue.STANDBY.waitTime !== null) {
                 return `± ${attraction.queue.STANDBY.waitTime} min`;
             } else {
-                return "Open";
+                return "";
             }
         };
 
@@ -19,14 +19,22 @@ export const ExperienceCard = {
                 const date = new Date(attraction.lastUpdated);
                 return `${date.toISOString().split('T')[0]} ${date.toTimeString().substring(0, 5)}`;
             }
-            return "Unknown";
+            return "Onbekend";
         };
 
         return (
             <div className="p-4 shadow-sm bg-white rounded-lg overflow-hidden relative">
                 <div className="flex justify-between">
                     <span className="text-xl text-main-500">{attraction.name}</span>
-                    <span className="bg-mattOrange text-white px-2 py-1 rounded text-sm">
+                    <span className={`
+                        text-white px-2 py-1 rounded text-sm
+                        ${
+                            formatWaitTime() === ""
+                                ? "bg-none"
+                                : 
+                                    "bg-mattOrange"
+                        }
+                        `}>
                         {formatWaitTime()}
                     </span>
                 </div>
