@@ -40,6 +40,7 @@ export const Navigation = {
                     width={350}
                     height={50}
                     alt="Decorative divider"
+                    priority
                 />
             </>
         );

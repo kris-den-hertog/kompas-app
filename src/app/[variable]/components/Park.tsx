@@ -1,9 +1,20 @@
+interface ParkHeaderProps {
+    parkId?: string;
+}
+
 export const Park = {
-    Header: function ParkHeader() {
+    Header: function ParkHeader({ parkId = "efteling" }: ParkHeaderProps) {
+        // Convert parkId to a properly formatted display name (capitalize first letter, replace hyphens with spaces)
+        const displayName = parkId
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        
+        
         return (
             <div className='w-[350px] h-[155px] bg-main-300 rounded-[16px] mb-[55px] flex flex-col items-center justify-center'>
-                <h1 className='text-[48px] text-main-500 m-0'>Efteling</h1>
-                <h2 className='text-[20px]'>Kaatsheuvel Noord-Brabant</h2>
+                <h1 className='text-[48px] text-main-500 m-0'>{parkId}</h1>
+                <h2 className='text-[20px]'></h2>
             </div>
         );
     },
@@ -19,11 +30,17 @@ export const Park = {
         );
     },
     
-    LoadingState: function LoadingState() {
+    LoadingState: function LoadingState({ parkId = "efteling" }: ParkHeaderProps) {
+        // Convert parkId to display name
+        const displayName = parkId
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+            
         return (
             <div className="flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-main-500"></div>
-                <p className="ml-4 text-lg">Loading Efteling data...</p>
+                <p className="ml-4 text-lg">Loading {displayName} data...</p>
             </div>
         );
     },
@@ -38,6 +55,3 @@ export const Park = {
         );
     }
 };
-
-
-

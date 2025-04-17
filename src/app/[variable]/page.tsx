@@ -1,28 +1,35 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { Park } from './components/Park';
 import { Navigation } from './components/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 import { ExperienceList } from './components/experiences';
-import { Attraction, fetchEftelingData, categorizeAttractions } from './utils/attractionUtils';
+import { Attraction, fetchThemeParkData, categorizeAttractions } from './utils/attractionUtils';
 
 export default function Home() {
+    // Get the dynamic route parameter
+    const params = useParams();
+    const parkId = params.variable as string;
+    console.log(parkId);
+    
     const [attractions, setAttractions] = useState<Attraction[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [activeTab, setActiveTab] = useState<'alles' | 'attracties' | 'shows'>('alles');
-
+    
     useEffect(() => {
         const loadData = async () => {
             try {
-                const data = await fetchEftelingData();
+                const data = await fetchThemeParkData(parkId);
                 const processedData = categorizeAttractions(data);
                 setAttractions(processedData);
                 setError(null);
                 setLoading(false);
-
+                
                 setShowToast(true);
                 setTimeout(() => setShowToast(false), 3000); // Hide after 3 sec
             } catch (err) {
@@ -31,33 +38,31 @@ export default function Home() {
                 setLoading(false);
             }
         };
-
-
+        
         loadData(); // Initial fetch
-
+        
         const intervalId = setInterval(loadData, 60_000); // Refresh every 60 seconds
-
+        
         return () => clearInterval(intervalId); // Clean up interval on unmount
-    }, []);
-
-
+    }, [parkId]);
+    
     const filteredAttractions = attractions.filter(attraction => {
         const matchesSearch = attraction.name.toLowerCase().includes(searchTerm.toLowerCase());
-
+        
         if (activeTab === 'alles') return matchesSearch;
         if (activeTab === 'attracties') return matchesSearch && attraction.type === 'ATTRACTION';
         if (activeTab === 'shows') return matchesSearch && attraction.type === 'SHOW';
-
+        
         return matchesSearch;
     });
-
+    
     const rides = filteredAttractions.filter(item => item.type === 'ATTRACTION');
     const shows = filteredAttractions.filter(item => item.type === 'SHOW');
-
+        
     return (
         <main className="container mx-auto min-h-screen py-8 bg-main-100">
             <div className='w-full flex flex-col items-center mb-10'>
-                <Park.Header />
+                <Park.Header parkId={parkId} />
                 <Navigation.Tabs
                     activeTab={activeTab}
                     setActiveTab={setActiveTab}
@@ -68,29 +73,27 @@ export default function Home() {
                     activeTab={activeTab}
                 />
             </div>
-
-            {loading && <Park.LoadingState />}
+            
+            {loading && <Park.LoadingState parkId={parkId} />}
             {error && <Park.ErrorState error={error} />}
-
+            
             {!loading && !error && filteredAttractions.length === 0 && (
                 <p className="text-center text-lg">Geen resultaten gevonden.</p>
             )}
-
+            
             {!loading && !error && (
                 <>
                     {(activeTab === 'alles' || activeTab === 'attracties') && rides.length > 0 && (
                         <ExperienceList.Attractions attractions={rides} />
                     )}
-
+                    
                     {(activeTab === 'alles' || activeTab === 'shows') && shows.length > 0 && (
                         <ExperienceList.Shows shows={shows} />
                     )}
                 </>
             )}
             {showToast && (
-                <div className="fixed bottom-6 right-6 bg-main-500/90 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 z-50">
-                    Wachtijden opgehaald!
-                </div>
+                <ToastContainer />
             )}
         </main>
     );

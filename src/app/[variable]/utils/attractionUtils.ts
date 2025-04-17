@@ -1,3 +1,5 @@
+// ./[variable]/components/utils/attractionUtils.ts
+
 export interface QueueTime {
     waitTime: number | null;
     status?: string;
@@ -19,13 +21,13 @@ export interface Attraction {
     type?: "ATTRACTION" | "SHOW";
 }
 
-export interface EftelingApiResponse {
+export interface ThemeParkApiResponse {
     liveData: Attraction[];
 }
 
-export async function fetchEftelingData(): Promise<Attraction[]> {
+export async function fetchThemeParkData(parkId: string): Promise<Attraction[]> {
     try {
-        const response = await fetch('https://api.themeparks.wiki/v1/entity/efteling/live', {
+        const response = await fetch(`https://api.themeparks.wiki/v1/entity/${parkId}/live`, {
             cache: 'no-store'
         });
 
