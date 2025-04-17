@@ -15,9 +15,10 @@ export default function Home() {
 
   return (
     <div className="w-[100vw] h-[100vh] bg-main-100 flex items-center justify-center flex-col">
-
-      <h1 className="text-4xl mb-8 text-main-500">Kompas</h1>
-
+      <header>
+        <h1 className="text-4xl mb-8 text-main-500">Kompas</h1>
+      </header>
+      
       <div className="w-full max-w-md p-6">
         <form onSubmit={handleSearch} className="mb-6">
           <div className="flex flex-col gap-2">
@@ -30,12 +31,12 @@ export default function Home() {
                 type="text"
                 value={parkSearch}
                 onChange={(e) => setParkSearch(e.target.value)}
-                placeholder="e.g. efteling, disney-world"
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-copper"
+                placeholder="efteling, disney-world..."
+                className="flex-1 px-4 py-2 bg-main-300 border border-main-500 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-copper"
               />
               <button
                 type="submit"
-                className="bg-copper text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-colors"
+                className="bg-copper text-white px-4 py-2 rounded-r-xl hover:bg-opacity-90 transition-colors"
               >
                 Go
               </button>
