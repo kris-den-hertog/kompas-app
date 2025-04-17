@@ -1,24 +1,25 @@
+import Link from "next/link";
+
 interface ParkHeaderProps {
     parkId?: string;
 }
 
 export const Park = {
     Header: function ParkHeader({ parkId = "efteling" }: ParkHeaderProps) {
-        // Convert parkId to a properly formatted display name (capitalize first letter, replace hyphens with spaces)
         const displayName = parkId
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
-        
-        
+
+
         return (
-            <div className='w-[350px] h-[155px] bg-main-300 rounded-[16px] mb-[55px] flex flex-col items-center justify-center'>
-                <h1 className='text-[48px] text-main-500 m-0'>{parkId}</h1>
+            <div className='w-[350px] h-[155px] bg-main-300 rounded-[16px] mb-[55px] mt-[50px] flex flex-col items-center justify-center'>
+                <h1 className='text-[48px] text-main-500 m-0'>{displayName}</h1>
                 <h2 className='text-[20px]'></h2>
             </div>
         );
     },
-    
+
     SectionHeader: function SectionHeader({ title, count, subtitle }: { title: string, count: number, subtitle?: string }) {
         return (
             <div className="w-full flex flex-col items-center mb-6">
@@ -29,14 +30,13 @@ export const Park = {
             </div>
         );
     },
-    
+
     LoadingState: function LoadingState({ parkId = "efteling" }: ParkHeaderProps) {
-        // Convert parkId to display name
         const displayName = parkId
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
-            
+
         return (
             <div className="flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-main-500"></div>
@@ -44,13 +44,14 @@ export const Park = {
             </div>
         );
     },
-    
+
     ErrorState: function ErrorState({ error }: { error: string }) {
         return (
             <div className="text-lg text-center py-8">
-                <h1 className='text-red-700 text-3xl font-bold'>Something went wrong</h1>
-                <p className='text-red-800 mb-4'>Error loading data: {error}</p>
-                <p>Please make sure you have a stable connection to the internet</p>
+                <h1 className='text-red-700 text-3xl font-bold'>Oeps.. dat park kennen we nog niet!</h1>
+                <p className="mb-10">Verbeter de spelling of probeer het later nog eens</p>
+                <a href="../" className="bg-main-500 text-white px-4 py-2 rounded-lg">Terug</a>
+
             </div>
         );
     }

@@ -1,5 +1,3 @@
-// ./[variable]/components/utils/attractionUtils.ts
-
 export interface QueueTime {
     waitTime: number | null;
     status?: string;

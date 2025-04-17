@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Kompas",
-  description: "Testing the Efteling queue times API",
+  description: "De beste tool voor jouw dagje uit!",
 };
 
 export default function RootLayout({

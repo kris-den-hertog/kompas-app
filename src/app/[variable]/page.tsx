@@ -9,7 +9,6 @@ import { ExperienceList } from './components/experiences';
 import { Attraction, fetchThemeParkData, categorizeAttractions } from './utils/attractionUtils';
 
 export default function Home() {
-    // Get the dynamic route parameter
     const params = useParams();
     const parkId = params.variable as string;
     console.log(parkId);
@@ -31,7 +30,7 @@ export default function Home() {
                 setLoading(false);
                 
                 setShowToast(true);
-                setTimeout(() => setShowToast(false), 3000); // Hide after 3 sec
+                setTimeout(() => setShowToast(false), 3000); 
             } catch (err) {
                 console.error("Fetch error:", err);
                 setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -39,11 +38,11 @@ export default function Home() {
             }
         };
         
-        loadData(); // Initial fetch
+        loadData(); 
         
-        const intervalId = setInterval(loadData, 60_000); // Refresh every 60 seconds
+        const intervalId = setInterval(loadData, 30_000); 
         
-        return () => clearInterval(intervalId); // Clean up interval on unmount
+        return () => clearInterval(intervalId); 
     }, [parkId]);
     
     const filteredAttractions = attractions.filter(attraction => {
@@ -62,6 +61,8 @@ export default function Home() {
     return (
         <main className="container mx-auto min-h-screen py-8 bg-main-100">
             <div className='w-full flex flex-col items-center mb-10'>
+            <a href="../" className="absolute top-5 left-5 bg-copper text-white px-4 py-2 rounded-lg z-50">Terug</a>
+
                 <Park.Header parkId={parkId} />
                 <Navigation.Tabs
                     activeTab={activeTab}
@@ -72,6 +73,7 @@ export default function Home() {
                     setSearchTerm={setSearchTerm}
                     activeTab={activeTab}
                 />
+          
             </div>
             
             {loading && <Park.LoadingState parkId={parkId} />}
