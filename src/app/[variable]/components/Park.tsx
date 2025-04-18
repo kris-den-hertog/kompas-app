@@ -1,4 +1,10 @@
-import Link from "next/link";
+import { Milonga } from 'next/font/google';
+
+
+const milongaFont = Milonga({
+  weight: '400',  
+  subsets: ['latin'],
+});
 
 interface ParkHeaderProps {
     parkId?: string;
@@ -14,7 +20,7 @@ export const Park = {
 
         return (
             <div className='w-[350px] h-[155px] bg-main-300 rounded-[16px] mb-[55px] mt-[50px] flex flex-col items-center justify-center'>
-                <h1 className='text-[48px] text-main-500 m-0'>{displayName}</h1>
+                <h1 className={`${milongaFont.className} text-[48px] text-main-500 m-0`}>{displayName}</h1>
                 <h2 className='text-[20px]'></h2>
             </div>
         );
