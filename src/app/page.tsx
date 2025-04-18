@@ -2,11 +2,17 @@
 
 import Image from "next/image";
 import Searchbar from "@/components/searchbar";
+import { Milonga } from 'next/font/google';
+
+// Initialize the font correctly with subsets
+const milongaFont = Milonga({
+  weight: '400',  // Milonga typically only has one weight
+  subsets: ['latin'],
+});
 
 export default function Home() {
-
   return (<div className="w-[100vw]">
-    <div className="h-[100vh] bg-main-100 flex items-center justify-center flex-col">
+    <div id="top" className="h-[100vh] bg-main-100 flex items-center justify-center flex-col">
       <header className="absolute top-[20vh] mr-[28px]">
         <Image
           src="/logo.svg"
@@ -20,17 +26,42 @@ export default function Home() {
       <a href="#info" className="absolute bottom-4 self-center">Meer info v</a>
     </div>
 
-    <div className="bg-main-400">
-      <h1 id="info" className="text-[50px] font-milonga text-main-500 pl-3 py-5">welkom bij Kompas!</h1>
-      <div className="p-3">
-        <h2 className="text-2xl font-bold text-main-500 mb-1">Altijd op de hoogte van de wachttijden!</h2>
-      <p className="text-md">Met Kompas zie je in één oogopslag de actuele wachttijden van attracties in parken verspreid 
-        over heel Europa. Of je nu een dagje uit plant of ter plekke staat in de rij — wij geven je realtime 
-        informatie in een overzichtelijke en gebruiksvriendelijke interface. Geen verrassingen meer, alleen maar 
-        slim plannen en meer plezier uit je parkbezoek halen!</p>
+    <div className="bg-main-400 py-10 px-5">
+      <h1
+        id="info"
+        className={`${milongaFont.className} text-[45px] font-bold text-main-500 text-center mb-10`}
+      >
+        Welkom bij Kompas!
+      </h1>
+
+      <div className="flex flex-wrap justify-center gap-8">
+        <div className="bg-main-300 rounded-[16px] shadow-md p-6 max-w-[600px] w-full">
+          <h2 className="text-2xl font-bold text-main-500 mb-3">
+            Altijd op de hoogte van de wachttijden!
+          </h2>
+          <p className="text-md text-main-700">
+            Met Kompas zie je in één oogopslag de actuele wachttijden van attracties in parken verspreid
+            over heel Europa. Of je nu een dagje uit plant of ter plekke staat in de rij — wij geven je
+            realtime informatie in een overzichtelijke en gebruiksvriendelijke interface. Geen verrassingen
+            meer, alleen maar slim plannen en meer plezier uit je parkbezoek halen!
+          </p>
+        </div>
+
+        <div className="bg-main-300 rounded-[16px] shadow-md p-6 max-w-[600px] w-full">
+          <h2 className="text-2xl font-bold text-main-500 mb-3">Hoe werkt Kompas?</h2>
+          <p className="text-md text-main-700">
+            Kompas verzamelt actuele wachttijden van attractieparken verspreid over heel Europa en zet deze
+            in een overzichtelijke pagina. Zo kun je snel zien waar het druk is en waar niet. De gegevens
+            worden real-time opgehaald via de API's van{' '}
+            <a href="https://themeparks.wiki/" className="underline text-blue-600 hover:text-blue-800">
+              Themeparks Wiki
+            </a>.
+          </p>
+        </div>
+        <a href="#top">Terug naar boven</a>
       </div>
-    
     </div>
+
   </div>
   );
 }

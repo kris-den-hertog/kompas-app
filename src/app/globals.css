@@ -17,10 +17,12 @@
 
   --font-milonga: "Milonga", serif;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
+  background-color: #F4F9F4;
   font-family: "Montaga", serif;
   font-weight: 400;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }

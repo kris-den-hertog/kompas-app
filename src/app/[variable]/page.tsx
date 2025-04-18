@@ -60,7 +60,7 @@ export default function Home() {
         
     return (
         <main className="container mx-auto min-h-screen py-8 bg-main-100">
-            <div className='w-full flex flex-col items-center mb-10'>
+            <div className='w-full flex  max-xl:flex-col justify-around flex-row items-center mb-10'>
             <a href="../" className="absolute top-5 left-5 bg-copper text-white px-4 py-2 rounded-lg z-50">Terug</a>
 
                 <Park.Header parkId={parkId} />
