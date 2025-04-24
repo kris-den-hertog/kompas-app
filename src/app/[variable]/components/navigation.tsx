@@ -67,8 +67,8 @@ export const Navigation = {
         };
 
         return (
-            <div className="relative w-[350px] h-[155px] bg-main-300 rounded-[16px] flex flex-col-reverse items-center justify-center max-xl:bg-main-100 max-xl:mt-10">
-                <div className="absolute inset-y-0 left-7 flex items-center pl-3   pointer-events-none">
+            <div className="relative w-[350px] h-[155px] bg-main-300 rounded-[16px] flex flex-col-reverse items-center justify-center max-xl:bg-main-100 max-xl:mt-10 max-xl:h-auto">
+                <div className="absolute inset-y-0 left-7 max-xl:left-1 flex items-center pl-3   pointer-events-none">
                     <svg className="w-4 h-4 text-main-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>

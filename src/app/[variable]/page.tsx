@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Park } from './components/Park';
 import { Navigation } from './components/navigation';
-import { ToastContainer, toast } from 'react-toastify';
 import { ExperienceList } from './components/experiences';
 import { Attraction, fetchThemeParkData, categorizeAttractions } from './utils/attractionUtils';
 
@@ -17,7 +16,7 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [showToast, setShowToast] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
     const [activeTab, setActiveTab] = useState<'alles' | 'attracties' | 'shows'>('alles');
     
     useEffect(() => {
@@ -29,8 +28,9 @@ export default function Home() {
                 setError(null);
                 setLoading(false);
                 
-                setShowToast(true);
-                setTimeout(() => setShowToast(false), 3000); 
+                // Show simple notification
+                setShowNotification(true);
+                setTimeout(() => setShowNotification(false), 3000);
             } catch (err) {
                 console.error("Fetch error:", err);
                 setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -40,7 +40,9 @@ export default function Home() {
         
         loadData(); 
         
-        const intervalId = setInterval(loadData, 30_000); 
+        const intervalId = setInterval(() => {
+            loadData();
+        }, 30_000); 
         
         return () => clearInterval(intervalId); 
     }, [parkId]);
@@ -60,8 +62,14 @@ export default function Home() {
         
     return (
         <main className="container mx-auto min-h-screen py-8 bg-main-100">
-            <div className='w-full flex  max-xl:flex-col justify-around flex-row items-center mb-10'>
-            <a href="../" className="absolute top-5 left-5 bg-copper text-white px-4 py-2 rounded-lg z-50">Terug</a>
+            {showNotification && (
+                <div className="fixed bottom-5 right-5 z-50 bg-main-500 text-white px-4 py-2 transition-all rounded">
+                    Wachttijden opgehaald!
+                </div>
+            )}
+            
+            <div className='w-full flex max-xl:flex-col justify-around flex-row items-center mb-10'>
+                <a href="../" className="absolute top-5 left-5 bg-copper text-white px-4 py-2 rounded-lg z-50">Terug</a>
 
                 <Park.Header parkId={parkId} />
                 <Navigation.Tabs
@@ -73,7 +81,6 @@ export default function Home() {
                     setSearchTerm={setSearchTerm}
                     activeTab={activeTab}
                 />
-          
             </div>
             
             {loading && <Park.LoadingState parkId={parkId} />}
@@ -93,9 +100,6 @@ export default function Home() {
                         <ExperienceList.Shows shows={shows} />
                     )}
                 </>
-            )}
-            {showToast && (
-                <ToastContainer />
             )}
         </main>
     );

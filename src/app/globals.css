@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montaga&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Milonga&display=swap');
 
 @theme {
   --color-main-100: #F4F9F4;

@@ -14,6 +14,5 @@ export const themeParks = [
     { id: "europapark", name: "Europa Park" },
     { id: "parcasterix", name: "Parc Asterix" },
     { id: "disneylandpark", name: "Dinsey paris (park)" },
-    { id: "caribeaquaticpark", name: "Caribe Aquatic Park" },
     { id: "parquewarnermadrid", name: "Parque Warner Madrid" },
   ];
