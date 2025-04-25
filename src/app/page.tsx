@@ -53,7 +53,7 @@ export default function Home() {
             Kompas verzamelt actuele wachttijden van attractieparken verspreid over heel Europa en zet deze
             in een overzichtelijke pagina. Zo kun je snel zien waar het druk is en waar niet. De gegevens
             worden real-time opgehaald via de API's van{' '}
-            <a href="https://themeparks.wiki/" className="underline text-blue-600 hover:text-blue-800">
+            <a href="https://themeparks.wiki/" target="_blank" className="underline text-blue-600 hover:text-blue-800">
               Themeparks Wiki
             </a>.
           </p>
