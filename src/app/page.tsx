@@ -21,7 +21,7 @@ export default function Home() {
           alt="Logo"
           priority
         />
-        <p className="text-copper">Open Beta</p>
+        <p className="text-copper">Beta 2-05</p>
       </header>
       <Searchbar />
       <a href="#info" className="absolute bottom-4 self-center">Meer info v</a>

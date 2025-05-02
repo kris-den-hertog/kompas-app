@@ -3,6 +3,7 @@ export const themeParks = [
     { id: "toverland", name: "Toverland" },
     { id: "walibiholland", name: "Walibi Holland" },
     { id: "walibibelgium", name: "Walibi Belgium" },
+    { id: "walibirhonealpes", name: "Walibi Rhône-Alpes" },
     { id: "plopsaland", name: "Plopsa de panne" },
     { id: "bellewaerde", name: "Bellewaerde" },
     { id: "bobbejaanland", name: "Bobbejaanland" },
@@ -15,4 +16,6 @@ export const themeParks = [
     { id: "parcasterix", name: "Parc Asterix" },
     { id: "disneylandpark", name: "Dinsey paris (park)" },
     { id: "parquewarnermadrid", name: "Parque Warner Madrid" },
+    { id: "legolandbillund", name: "LEGOLAND Billund" },
+    { id: "liseberg", name: "Liseberg" },
   ];

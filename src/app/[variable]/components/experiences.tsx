@@ -5,7 +5,7 @@ export const ExperienceCard = {
     Attraction: function AttractionCard({ attraction }: { attraction: Attraction }) {
         const formatWaitTime = () => {
             if (attraction.status === "CLOSED") {
-                return "Closed";
+                return "Gesloten";
             } else if (attraction.queue?.STANDBY?.waitTime !== undefined &&
                 attraction.queue.STANDBY.waitTime !== null) {
                 return `± ${attraction.queue.STANDBY.waitTime} min`;
@@ -24,39 +24,50 @@ export const ExperienceCard = {
 
         return (
             <div className="p-4 shadow-sm bg-white rounded-lg overflow-hidden relative">
-                <div className="flex justify-between">
+                <div className="h-[45px] flex items-center justify-between">
                     <span className="text-xl text-main-500">{attraction.name}</span>
-                    <span className={`
-                        text-white px-2 py-1 rounded text-sm
-                        ${
-                            formatWaitTime() === ""
-                                ? "bg-none"
-                                : 
-                                    "bg-mattOrange"
-                        }
-                        `}>
-                        {formatWaitTime()}
-                    </span>
+                    <div className="flex flex-col items-end">
+                        <span
+                            className={`
+                text-white px-2 py-1 rounded text-sm w-fit whitespace-nowrap
+                ${formatWaitTime() === ""
+                                    ? "bg-none"
+                                    : "bg-mattOrange"
+                                }
+            `}
+                        >
+                            {formatWaitTime()}
+                        </span>
+                        {attraction.queue?.SINGLE_RIDER?.waitTime !== undefined &&
+                            attraction.queue.SINGLE_RIDER.waitTime !== null && (
+                                <span className="text-[15px] text-mattOrange">
+                                    single rider: {attraction.queue.SINGLE_RIDER.waitTime} min
+                                </span>
+                            )}
+                    </div>
                 </div>
 
+
                 <div className="absolute left-0 bottom-0 w-full h-24 bg-offWhite"></div>
-                
+
                 <div className="relative mt-7">
                     <div className="flex justify-between mb-4">
                         <span className="font-medium">Status:</span>
                         <span
-                            className={`text-sm ${
-                                attraction.status === "OPERATING"
-                                    ? "text-green-800"
-                                    : attraction.status === "DOWN"
-                                        ? "text-red-800"
-                                        : "text-gray-800"
-                            }`}
+                            className={`text-sm ${attraction.status === "OPERATING"
+                                ? "text-green-800"
+                                : attraction.status === "DOWN"
+                                    ? "text-red-800"
+                                    : "text-gray-800"
+                                }`}
                         >
-                            {attraction.status}
+                            {attraction.status === "OPERATING" ? "IN BEDRIJF" :
+                                attraction.status === "DOWN" ? "STORING" :
+                                    attraction.status === "CLOSED" ? "GESLOTEN" :
+                                        attraction.status}
                         </span>
                     </div>
-                    
+
                     <div className="flex justify-between">
                         <span className="font-medium">Laatste update:</span>
                         <span className="text-sm">
@@ -86,9 +97,9 @@ export const ExperienceCard = {
 
 const getWaitTime = (attraction: Attraction): number => {
     if (attraction.status === "CLOSED" || attraction.status === "DOWN") {
-        return -1; 
+        return -1;
     }
-    
+
     const waitTime = attraction.queue?.STANDBY?.waitTime;
     return waitTime !== undefined && waitTime !== null ? waitTime : 0;
 };
@@ -97,15 +108,15 @@ const sortByWaitTime = (attractions: Attraction[]): Attraction[] => {
     return [...attractions].sort((a, b) => {
         const waitTimeA = getWaitTime(a);
         const waitTimeB = getWaitTime(b);
-        
+
         if (waitTimeA === -1 && waitTimeB === -1) {
-            return 0; 
+            return 0;
         } else if (waitTimeA === -1) {
-            return 1; 
+            return 1;
         } else if (waitTimeB === -1) {
-            return -1; 
+            return -1;
         }
-        
+
         return waitTimeB - waitTimeA;
     });
 };
@@ -113,7 +124,7 @@ const sortByWaitTime = (attractions: Attraction[]): Attraction[] => {
 export const ExperienceList = {
     Attractions: function AttractionsList({ attractions }: { attractions: Attraction[] }) {
         const sortedAttractions = sortByWaitTime(attractions);
-        
+
         return (
             <div className="mb-12">
                 <Park.SectionHeader

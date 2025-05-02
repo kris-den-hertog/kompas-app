@@ -12,9 +12,7 @@ interface ParkHeaderProps {
 
 export const Park = {
   Header: function ParkHeader({ parkId = "efteling" }: ParkHeaderProps) {
-    // Find the park name in the themeParks array
     const park = themeParks.find(park => park.id === parkId);
-    // Use the actual name if found, otherwise fallback to formatting the parkId
     const displayName = park?.name || parkId
       .split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -41,7 +39,6 @@ export const Park = {
   },
   
   LoadingState: function LoadingState({ parkId = "efteling" }: ParkHeaderProps) {
-    // Also update the LoadingState to use the same name lookup
     const park = themeParks.find(park => park.id === parkId);
     const displayName = park?.name || parkId
       .split('-')
