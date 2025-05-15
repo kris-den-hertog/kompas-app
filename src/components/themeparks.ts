@@ -14,7 +14,7 @@ export const themeParks = [
     { id: "rulantica", name: "Rulantica" },
     { id: "europapark", name: "Europa Park" },
     { id: "parcasterix", name: "Parc Asterix" },
-    { id: "disneylandpark", name: "Dinsey paris (park)" },
+    { id: "disneylandparis", name: "Dinsey paris (park)" },
     { id: "parquewarnermadrid", name: "Parque Warner Madrid" },
     { id: "legolandbillund", name: "LEGOLAND Billund" },
     { id: "liseberg", name: "Liseberg" },
