@@ -71,14 +71,14 @@ export default function Explainer() {
                     </p>
                 </div>
             </div>
-            <div className="bg-white/40 backdrop-blur-sm h-[600px] rounded-[16px] shadow-sm p-6 ">
+            <div className="bg-white/40 backdrop-blur-sm h-[100%] rounded-[16px] shadow-sm p-6 ">
                 <h2 className={`${milongaFont.className} text-3xl md:text-4xl font-bold text-main-500 mb-3`}>
                     Ondersteunde parken
                 </h2>
                 <p className="text-xl text-main-700 mt-[30px]">
                     Kompas ondersteund de volgende parken:
                 </p>
-                <div className='h-[400px] overflow-scroll bg-main-300 p-4 rounded-xl mt-[30px]'>
+                <div className='h-[450px] overflow-y-scroll bg-main-300 p-4 rounded-xl mt-[30px]'>
                     {themeParks.map(park => (
                         <li key={park.id} className="mb-1">
                             <a href={park.id} className='text-main-500 text-xl hover:underline'>{park.name}</a>
