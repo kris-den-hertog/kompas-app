@@ -63,6 +63,7 @@ export default function Searchbar() {
                         placeholder="Efteling, Phantasialand..."
                         className="flex-1 px-4 py-2 bg-main-300 shadow shadow-main-500 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-main-400"
                         autoComplete="off"
+                        maxLength={30}
                     />
                     <button
                         type="submit"
@@ -73,7 +74,7 @@ export default function Searchbar() {
                 </div>
             </div>
 
-            {/* Suggestions dropdown */}
+            
             {showSuggestions && parkSearch.length > 0 && filteredSuggestions.length > 0 && (
                 <div
                     ref={suggestionsRef}

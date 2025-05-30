@@ -41,19 +41,15 @@ export default function Explainer() {
                         meer, alleen maar slim plannen en meer plezier uit je parkbezoek halen!<br />
                     </p><br/>
                     <h2 className={`${milongaFont.className} text-xl md:text-2xl font-bold text-main-500 mb-3`}>
-                        Update: Final Beta
+                        Update: Versie 1.0
                     </h2>
                     <p>
-                        Dit is de allerlaatste beta voordat we echt gaan releasen! mocht je nog fouten tegenkomen in de app,
-                        kun je altijd een berichtje sturen via 
-                        <a href="https://twitter.com/CEO_of_weekend" target="_blank" className="underline text-blue-600 hover:text-blue-800">
-                             X
-                        </a>.<br/><br/>
-                        Wat is er nieuw?<br/>
-                        Footer geupdate.<br/>
-                        Attractie-lijst toegevoegd<br/>
-
-        
+                        Kompas versie 1.0, we zijn klaar voor release!
+                        <br/><br/>
+                        Dit is er nieuw:<br/>
+                        Parkeerhulp toegevoegd.<br/>
+                        Dashboard toegevoegd<br/>
+                        UI en UX geupdate<br/>
                     </p>
                 </div>
 

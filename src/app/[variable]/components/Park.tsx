@@ -26,7 +26,7 @@ export const Park = {
     );
   },
   
-  // Other components remain unchanged
+
   SectionHeader: function SectionHeader({ title, count, subtitle }: { title: string, count: number, subtitle?: string }) {
     return (
       <div className="w-full flex flex-col items-center mb-6">

@@ -1,4 +1,5 @@
 import { Attraction } from '../utils/attractionUtils';
+import { motion } from "framer-motion";
 import { Park } from './Park';
 
 export const ExperienceCard = {
@@ -21,20 +22,36 @@ export const ExperienceCard = {
             }
             return "Onbekend";
         };
+        const isStaleUpdate = (): boolean => {
+            if (!attraction.lastUpdated || attraction.status !== "OPERATING") return false;
+            const lastUpdatedDate = new Date(attraction.lastUpdated);
+            const now = new Date();
+            const diffInMs = now.getTime() - lastUpdatedDate.getTime();
+            const diffInHours = diffInMs / (1000 * 60 * 60);
+
+            return diffInHours > 10;
+        };
+
+        const fadeInUp = {
+            initial: { opacity: 0, y: 50 },
+            whileInView: { opacity: 1, y: 0 },
+            transition: { duration: 0.6, ease: "easeOut" },
+            viewport: { once: true, margin: "-100px" }
+        };
 
         return (
+            <motion.section 
+          {...fadeInUp}
+        >
             <div className="p-4 shadow-sm bg-white rounded-lg overflow-hidden relative">
                 <div className="h-[45px] flex items-center justify-between">
                     <span className="text-xl text-main-500">{attraction.name}</span>
                     <div className="flex flex-col items-end">
                         <span
                             className={`
-                text-white px-2 py-1 rounded text-sm w-fit whitespace-nowrap
-                ${formatWaitTime() === ""
-                                    ? "bg-none"
-                                    : "bg-mattOrange"
-                                }
-            `}
+                                text-white px-2 py-1 rounded text-sm w-fit whitespace-nowrap
+                                ${formatWaitTime() === "" ? "bg-none" : "bg-mattOrange"}
+                            `}
                         >
                             {formatWaitTime()}
                         </span>
@@ -46,7 +63,6 @@ export const ExperienceCard = {
                             )}
                     </div>
                 </div>
-
 
                 <div className="absolute left-0 bottom-0 w-full h-24 bg-offWhite"></div>
 
@@ -74,8 +90,15 @@ export const ExperienceCard = {
                             {formatLastUpdated()}
                         </span>
                     </div>
+
+                    {isStaleUpdate() && (
+                        <div className="mt-3 p-2 bg-yellow-100 text-yellow-800 text-sm rounded">
+                            ⚠️ Deze wachttijd is lang niet meer geupdate en is hoogstwaarschijnlijk niet meer accuraat
+                        </div>
+                    )}
                 </div>
             </div>
+            </motion.section>
         );
     },
 

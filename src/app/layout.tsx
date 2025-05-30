@@ -16,9 +16,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kompas",
   description: "De beste tool voor jouw dagje uit!",
-   icons: {
-    icon: "/metaheader.png",
-  },
 };
 
 export default function RootLayout({
