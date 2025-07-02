@@ -1,12 +1,14 @@
 import Image from "next/image"
 import FoldMenu from "./menu"
+import Today from "./today";
 
 interface navItems {
     parkId: string;
 }
 
 export default function Nav({parkId}: navItems) {
-    return(  <nav className="w-full grid grid-cols-3 items-center sticky top-5 z-40">
+    return(  <div className="w-full items-center flex flex-col sticky top-5 z-40">
+    <nav className="w-full grid grid-cols-3 items-center">
                 <div className="pl-4">
                     <a href="./" className="text-main-500 bg-main-300 px-4 py-2 rounded-lg">Terug</a>
                 </div>
@@ -24,5 +26,8 @@ export default function Nav({parkId}: navItems) {
                 <div className="flex justify-end pr-4">
                     <FoldMenu parkId={parkId} />
                 </div>
-            </nav>)
+            </nav>
+            <Today parkId={parkId} />
+
+            </div>)
 }

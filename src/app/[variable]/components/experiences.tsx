@@ -49,7 +49,7 @@ export const ExperienceCard = {
                     <div className="flex flex-col items-end">
                         <span
                             className={`
-                                text-white px-2 py-1 rounded text-sm w-fit whitespace-nowrap
+                                text-white px-2 py-1 rounded text-sm w-fit whitespace-nowrap inset-shadow-sm
                                 ${formatWaitTime() === "" ? "bg-none" : "bg-mattOrange"}
                             `}
                         >
@@ -92,8 +92,8 @@ export const ExperienceCard = {
                     </div>
 
                     {isStaleUpdate() && (
-                        <div className="mt-3 p-2 bg-yellow-100 text-yellow-800 text-sm rounded">
-                            ⚠️ Deze wachttijd is lang niet meer geupdate en is hoogstwaarschijnlijk niet meer accuraat
+                        <div className="mt-3 p-3 bg-yellow-100 text-yellow-800 text-sm rounded absolute bottom-1">
+                            ⚠️ Deze wachttijd is lang niet meer geupdate en is waarschijnlijk niet meer accuraat
                         </div>
                     )}
                 </div>

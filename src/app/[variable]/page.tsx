@@ -69,10 +69,6 @@ export default function Home() {
             )}
           <Nav parkId={parkId} />
             <div className='w-full flex max-xl:flex-col justify-around flex-row items-center mb-10'>
-
-
-
-
                 <Park.Header parkId={parkId} />
                 <Navigation.Tabs
                     activeTab={activeTab}

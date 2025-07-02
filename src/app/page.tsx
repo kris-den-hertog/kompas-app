@@ -15,7 +15,7 @@ export default function Home() {
           alt="Logo"
           priority
         />
-        <p className="text-copper">Versie 1.0</p>
+        <p className="text-copper">Versie 1.1</p>
       </header>
       <Searchbar />
       <a href="#info" className="absolute bottom-4 self-center">Meer info</a>

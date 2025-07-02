@@ -12,11 +12,13 @@ import {
 import { themeParks } from "@/components/themeparks";
 import Nav from "../components/nav";
 import { Milonga } from "next/font/google";
+import { motion } from "framer-motion";
 
 const milongaFont = Milonga({
     weight: "400",
     subsets: ["latin"],
 });
+
 
 export default function ParkTimes() {
     const params = useParams();
@@ -44,8 +46,6 @@ export default function ParkTimes() {
     const park = themeParks.find((park) => park.id === parkId);
     const displayName = park?.name || parkId;
 
-    console.log(`https://api.themeparks.wiki/v1/entity/${parkId}/schedule`);
-
     return (
         <div className="bg-main-100 min-h-screen w-full py-8">
             <Nav parkId={parkId} />
@@ -61,7 +61,8 @@ export default function ParkTimes() {
                 {error && <p className="text-red-500">{error}</p>}
 
                 {scheduleData ? (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-[850px] gap-4 mx-auto justify-items-center">
+                    <div
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-[850px] gap-4 mx-auto justify-items-center">
                         {scheduleData.slice(0, 7).map((day) => {
 
                             const displayText =
@@ -72,12 +73,15 @@ export default function ParkTimes() {
 
 
                             return (
-                                <div key={day.date} className="bg-white p-3 rounded-[30px] shadow-sm w-[150px] h-[150px] min-[450px]:w-[200px] min-[450px]:h-[200px] flex items-center justify-center flex-col">
+                                <motion.div 
+                                initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.05 }}
+                                key={day.date} 
+                                className="liquid-glass p-3 rounded-[30px] shadow-sm w-[150px] h-[150px] min-[450px]:w-[200px] min-[450px]:h-[200px] flex items-center justify-center flex-col">
                                     <strong>{formatDateLabel(day.date)}</strong> {displayText}
                                     {day.specialSchedule && (
                                         <div className="text-xs italic mt-1">{day.specialSchedule}</div>
                                     )}
-                                </div>
+                                </motion.div>
                             );
                         })}
                     </div>

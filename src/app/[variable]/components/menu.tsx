@@ -84,7 +84,7 @@ const FoldMenu = ({ parkId }: menuItems) => {
       {/* Menu Dropdown */}
       <div
         className={`
-          absolute right-0 top-14 bg-white rounded-lg shadow-lg border border-gray-200
+          absolute right-0 top-14 liquid-glass rounded-lg shadow-lg border border-gray-200
           overflow-hidden transition-all duration-300 ease-in-out z-50
           ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}
         `}
@@ -118,7 +118,7 @@ const FoldMenu = ({ parkId }: menuItems) => {
       </div>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden transition-all"
+          className="fixed inset-0  z-40 md:hidden transition-all"
           onClick={() => setIsOpen(false)}
         />
       )}
